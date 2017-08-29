@@ -1,4 +1,7 @@
 # RayTracing
+
+[![Build Status](https://travis-ci.org/clockvoid/RayTracing.svg?branch=master)](https://travis-ci.org/clockvoid/RayTracing)
+
 a ray tracing project implemented by kotlin
 
 ## Description
