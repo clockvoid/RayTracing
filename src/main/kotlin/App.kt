@@ -21,10 +21,11 @@ fun main(args: Array<String>) {
     builder.append("P3\n256 256\n255\n")
     for (colors in colorCord) {
         for (col in colors) {
-            //picFile.appendText(col.toString())
             builder.append(col.toString())
         }
     }
+
+    // val str = colorCord.flatMap({ n -> n }).fold("P3\n256 256\n255\n", { c1, c2 -> c1.toString() + c2.toString() }) // this solution is too late!!! because Java's plus operator with String is too late.
 
     picFile.writeText(builder.toString())
 
