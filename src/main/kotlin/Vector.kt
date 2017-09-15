@@ -14,6 +14,7 @@ interface Vector {
 	public fun abs(): Double
 	public operator fun times(arg0: Double): Vector
 	public operator fun div(arg0: Double): Vector
+	public fun normalize(): Vector
 
 }
 
@@ -31,6 +32,7 @@ class Vector3(val arg0: Double, val arg1: Double, val arg2: Double) : Vector{
 	override public operator fun times(arg0: Double): Vector = Vector3(this.x * arg0, this.y * arg0, this.z * arg0)
 	override public operator fun div(arg0: Double): Vector = Vector3(this.x / arg0, this.y / arg0, this.z / arg0)
 	override public fun toString(): String = "(" + this.x.toString() + "," + this.y.toString() + "," + this.z.toString() + ")"
+	override public fun normalize(): Vector = this / (this.abs())
 
 }
 
