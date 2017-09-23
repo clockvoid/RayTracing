@@ -9,7 +9,7 @@ class Cord(arg0: Screen, arg1: PinHole) {
 
 	val screen: Screen = arg0
 	val hole: PinHole = arg1
-	val cord: List<Ray> = screen.cord.map {
+	val rays: List<Ray> = screen.cord.map {
 		o -> Ray(o, (hole.center - o).normalize())
 	}
 

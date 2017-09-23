@@ -5,6 +5,12 @@ import color.Color
 import color.Color3
 import image.savePPM
 import ray.Ray
+import ray.IntersectionPoint
+import cord.Cord
+import cord.Screen
+import cord.PinHole
+import shape.Shape
+import shape.Sphere
 import java.time.LocalDateTime
 
 infix fun Double.pow(arg0: Double) = Math.pow(this, arg0)
@@ -20,7 +26,7 @@ val lp: Double = 1.0
 val kd: Double = 0.69
 val ka: Double = 0.01
 val ks: Double = 0.3
-val alpha: Double = 8.0
+val alpha: Double = 5.0
 val la: Double = 0.1
 
 fun D(arg0: Vector): Double = ((a - arg0).normalize() dot arg0).pow(2.0) - (arg0.abs().pow(2.0) - 1.0)
@@ -30,6 +36,23 @@ fun t(arg0: Vector): Double = (-1.0) * ((a - arg0).normalize() dot arg0) - Math.
 //fun <X, Y, Z> Function1<X, Y>.plus(f: (Z) -> X) = (z: Z) -> this(f(z))
 
 fun main(args: Array<String>) {
+	//TODO: make Sphere and calc IntersectionPoint
+	val ball: Shape = Sphere(Color3(255, 0, 0), Vector3(0.0, 0.0, 0.0), kd, 1.0, null)
+	val cord: Cord = Cord(Screen(Vector3(0.0, 0.0, 10.0), Rx, Ry, size), PinHole(a))
+	val points: List<IntersectionPoint?> = cord.rays.map {
+		ray -> ball.testIntersection(ray)
+	}
+	val colorCord: List<Color> = points.map {
+		point -> if (point == null) {
+			Color3(100, 149, 237)
+		} else {
+			ball.color
+		}
+	}
+	savePPM("pic" + LocalDateTime.now().toString() + ".ppm", colorCord)
+}
+
+/*fun main(args: Array<String>) {
 
 	val cord: List<Vector> = List(Ry.toInt(), {
 		t -> List(Rx.toInt(), {
@@ -68,4 +91,4 @@ fun main(args: Array<String>) {
 
 	savePPM("pic" + LocalDateTime.now().toString() + ".ppm", colorCord)
 
-}
+}*/

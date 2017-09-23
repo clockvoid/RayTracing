@@ -1,5 +1,5 @@
 
-package light
+package light 
 
 import vector.Vector
 import color.Color
