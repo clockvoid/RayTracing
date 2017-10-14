@@ -11,6 +11,8 @@ import cord.Screen
 import cord.PinHole
 import shape.Shape
 import shape.Sphere
+import light.LightSource
+import light.PointLightSource
 import java.time.LocalDateTime
 
 infix fun Double.pow(arg0: Double) = Math.pow(this, arg0)
@@ -38,6 +40,7 @@ fun t(arg0: Vector): Double = (-1.0) * ((a - arg0).normalize() dot arg0) - Math.
 fun main(args: Array<String>) {
     //TODO: calc lighting and color
     val ball: Shape = Sphere(Color3(255, 0, 0), Vector3(0.0, 0.0, 0.0), kd, 1.0, null)
+    val light: LightSource = PointLightSource(Vector3(-10.0, 10.0, 15.0), 1.0)
     val cord: Cord = Cord(Screen(Vector3(0.0, 0.0, 10.0), Rx, Ry, size), PinHole(a))
     val points: List<IntersectionPoint?> = cord.rays.map {
         ray -> ball.testIntersection(ray)

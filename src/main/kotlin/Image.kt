@@ -11,7 +11,7 @@ interface Image {
 }
 
 class Ppm(val arg1: String) : Image {
-    override val file = File(arg1.replace(":", "")).absoluteFile
+    override val file = File(arg1.replace(":", "")).absoluteFile // on Windows, we can not use ":" for file name
 
     override public fun save(arg0: String): Unit {
         file.writeText(arg0)
